@@ -11,5 +11,5 @@ class Feature
   validates :name, presence: true
 
   attr_accessible :name, :status
-
+  index({name:-1})
 end
