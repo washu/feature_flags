@@ -11,7 +11,7 @@ module FeatureFlags
         end
         @prev_migration_nr.to_s
       end
-        
+
     end
 
     class InstallGenerator < Rails::Generators::Base
@@ -30,7 +30,8 @@ module FeatureFlags
       end
 
       def copy_feature_migration
-        template "feature_flag_migrate.rb", "db/migrate/#{MigrationNumber.next_migration_number}_create_features.rb"
+        # For mongoid no need to add a migration.
+        #template "feature_flag_migrate.rb", "db/migrate/#{MigrationNumber.next_migration_number}_create_features.rb"
 
         ##commented model file generation
         template "feature_flag_model.rb", "app/models/feature.rb"
