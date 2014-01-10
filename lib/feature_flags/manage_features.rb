@@ -15,7 +15,7 @@ module FeatureFlags
   def self.create_feature_if_missing(feature_name)
     feature = Feature.where(:name => feature_name).last
     if feature.nil?
-      feature = Feature.new(:name => feature_name, :status => false)
+      feature = Feature.create(:name => feature_name, :status => false)
     end
   end
 
