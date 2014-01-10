@@ -12,6 +12,13 @@ module FeatureFlags
     features.map{|feature| get_feature(feature)}.compact.include? check
   end
 
+  def self.create_feature_if_missing(feature_name)
+    feature = Feature.where(:name => feature_name).last
+    if feature.nil?
+      feature = Feature.new(:name => feature_name, :status => false)
+    end
+  end
+
   def self.create_and_enable(feature_name)
     feature = Feature.new(:name => feature_name, :status => true)
     feature.save ? true : false
