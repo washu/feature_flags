@@ -28,7 +28,7 @@ module FeatureFlags
 
 	 	def self.set_hash
 	 		@@features_hash = {}
-	 		Feature.all.each{|f|@@features_hash[f.name.to_s] = f.status}
+	 		Feature.all.map{|f| @@features_hash[f.name.to_s.intern] = f.status}
 	 		@@features_hash.freeze
 	 	end
 		def update_hash
